@@ -29,10 +29,10 @@ function ListEmployeeComponent() {
 
     return (
         <>
-            <div>
+            <div className='container '>
                 <h2>List of Employees</h2>
 
-                <table>
+                <table className='table table-striped table-bordered'>
                     <thead>
                         <tr>
                             <th>Employee Id</th>
