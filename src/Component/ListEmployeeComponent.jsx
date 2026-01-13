@@ -70,8 +70,8 @@ function ListEmployeeComponent() {
                                 <td>{employee.lastName}</td>
                                 <td>{employee.email}</td>
                                 <td>
-                                    <button className='btn btn-info mx-1' onClick={() => updateemployee(employee.id)}>Update</button>
-                                    <button className='btn btn-danger mx-1' onClick={() => removeemployee(employee.id)}>Delete</button>
+                                    <button className='btn btn-info m-1' onClick={() => updateemployee(employee.id)}>Update</button>
+                                    <button className='btn btn-danger m-1' onClick={() => removeemployee(employee.id)}>Delete</button>
                                 </td>
                             </tr>
                         )}
