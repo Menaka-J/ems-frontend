@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { createEmployee } from '../Services/EmployeeService';
+import React, { useEffect, useState } from 'react'
+import { createEmployee, getEmployee, updateEmployee } from '../Services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function EmployeeComponent() {
@@ -10,21 +10,45 @@ function EmployeeComponent() {
     const { id } = useParams();
     const navigator = useNavigate();
 
+
+    useEffect(() => {
+        if (id) {
+            getEmployee(id).then((res) => {
+                setFirstName(res.data.firstName);
+                setLastName(res.data.lastName);
+                setEmail(res.data.email);
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    }, [id])
+
+
     //=====================================================================
-    //function for creating employee 
-    function saveemployee(e) {
+    //function for creating and updating employee 
+    function saveorupdateemployee(e) {
 
         e.preventDefault();
 
         if (validateform()) {
             const employee = { firstName, lastName, email };
 
-            createEmployee(employee).then((res) => {
-                console.log(res.data);
-                navigator("/employees");
-            })
+            if (id) {
+                updateEmployee(id, employee).then((res) => {
+                    console.log(res.data);
+                    navigator("/employees");
+                }).catch(error => {
+                    console.log(error);
+                })
+            } else {
+                createEmployee(employee).then((res) => {
+                    console.log(res.data);
+                    navigator("/employees");
+                }).catch(error => {
+                    console.log(error);
+                })
+            }
         }
-
     }
 
     //form validation
@@ -67,9 +91,10 @@ function EmployeeComponent() {
         if (id) {
             return <h2 className='text-center'>Update Employee</h2>
         } else {
-            <h2 className='text-center'>Add Employee</h2> 
+            return <h2 className='text-center'>Add Employee</h2>
         }
     }
+
 
 
     return (
@@ -111,7 +136,7 @@ function EmployeeComponent() {
                                 </div>
 
                                 {/* button  */}
-                                <button className='btn btn-success' onClick={saveemployee}>Submit</button>
+                                <button className='btn btn-success' onClick={saveorupdateemployee}>Submit</button>
                             </form>
                         </div>
                     </div>

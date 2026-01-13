@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { listEmployees } from '../Services/EmployeeService';
+import { deleteEmployee, listEmployees } from '../Services/EmployeeService';
 import { useNavigate } from 'react-router-dom';
 
 function ListEmployeeComponent() {
@@ -8,14 +8,21 @@ function ListEmployeeComponent() {
 
     const navigator = useNavigate();
 
+    //==================================================================
+    //showing employees
     useEffect(() => {
+        getallemployees();
+    }, [])
+
+    //getting function
+    function getallemployees() {
         listEmployees().then((res) => {
             setEmployees(res.data);
         }).catch(error => {
             console.log(error);
         })
-    }, [])
 
+    }
     //==================================================================
     //create function
     function addNewEmployee() {
@@ -28,6 +35,15 @@ function ListEmployeeComponent() {
         navigator(`/update-employee/${id}`);
     }
 
+    ////==================================================================
+    //deleting employees
+    function removeemployee(id) {
+        deleteEmployee(id).then((res) => {
+            getallemployees();
+        }).catch(error => {
+            console.log(error);
+        })
+    }
     return (
         <>
             <div className='container '>
@@ -54,8 +70,8 @@ function ListEmployeeComponent() {
                                 <td>{employee.lastName}</td>
                                 <td>{employee.email}</td>
                                 <td>
-                                    <button className='btn btn-info' onClick={() => updateemployee(employee.id)}>Update</button>
-                                    {/* <button className='btn btn-'>Delete</button> */}
+                                    <button className='btn btn-info mx-1' onClick={() => updateemployee(employee.id)}>Update</button>
+                                    <button className='btn btn-danger mx-1' onClick={() => removeemployee(employee.id)}>Delete</button>
                                 </td>
                             </tr>
                         )}
