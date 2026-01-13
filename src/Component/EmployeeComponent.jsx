@@ -61,8 +61,16 @@ function EmployeeComponent() {
         return valid;
     }
 
+    //=====================================================
+    //dynamic page title
+    function pagetitle() {
+        if (id) {
+            return <h2 className='text-center'>Update Employee</h2>
+        } else {
+            <h2 className='text-center'>Add Employee</h2> 
+        }
+    }
 
-    
 
     return (
         <div>
@@ -75,7 +83,7 @@ function EmployeeComponent() {
                     <div className='card col-md-6 offset-md-3 offset-md-3'>
 
                         {/* title  */}
-                        <h2 className='text-center'>Add Employee</h2>
+                        {pagetitle()}
                         <div className='card-body'>
 
                             {/* form  */}
