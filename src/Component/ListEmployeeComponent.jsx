@@ -26,15 +26,18 @@ function ListEmployeeComponent() {
                 <h2>List of Employees</h2>
                 <button className='btn btn-primary mb-2' onClick={addNewEmployee}>Add Employee</button>
                 <table className='table table-striped table-bordered'>
+                    {/* table head row  */}
                     <thead>
                         <tr>
                             <th>Employee Id</th>
                             <th>Employee First Name</th>
                             <th>Employee Last Name</th>
                             <th>Employee Email</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
+                    {/* actual table data  */}
                     <tbody>
                         {employees.map(employee =>
                             <tr key={employee.id}>
@@ -42,6 +45,10 @@ function ListEmployeeComponent() {
                                 <td>{employee.firstName}</td>
                                 <td>{employee.lastName}</td>
                                 <td>{employee.email}</td>
+                                <td>
+                                    <button className='btn btn-info' onClick={() => updateemployee(employee.id)}>Update</button>
+                                    {/* <button className='btn btn-'>Delete</button> */}
+                                </td>
                             </tr>
                         )}
                     </tbody>
