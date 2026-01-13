@@ -24,8 +24,9 @@ function ListEmployeeComponent() {
             "fname": "Mary",
             "lname": "Winchester",
             "email": "mary@gmail.com"
-        },
+        }
     ]
+
     return (
         <>
             <div>
@@ -42,14 +43,14 @@ function ListEmployeeComponent() {
                     </thead>
 
                     <tbody>
-                        {dummy.map((employee) => {
+                        {dummy.map(employee => 
                                 <tr key={employee.id}>
                                     <td>{employee.id}</td>
                                     <td>{employee.fname}</td>
                                     <td>{employee.lname}</td>
                                     <td>{employee.email}</td>
                                 </tr>
-                        })}
+                        )}
                     </tbody>
                 </table>
             </div>
