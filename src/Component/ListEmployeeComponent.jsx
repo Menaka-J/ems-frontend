@@ -16,8 +16,16 @@ function ListEmployeeComponent() {
         })
     }, [])
 
+    //==================================================================
+    //create function
     function addNewEmployee() {
         navigator("/add-employee");
+    }
+
+    //==================================================================
+    //update function
+    function updateemployee(id) {
+        navigator(`/update-employee/${id}`);
     }
 
     return (

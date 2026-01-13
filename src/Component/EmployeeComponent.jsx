@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { createEmployee } from '../Services/EmployeeService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function EmployeeComponent() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [errors, setErrors] = useState({ firstName: "", lastName: "", email: "" });
+    const { id } = useParams();
     const navigator = useNavigate();
 
     //=====================================================================
@@ -60,6 +61,8 @@ function EmployeeComponent() {
         return valid;
     }
 
+
+    
 
     return (
         <div>
